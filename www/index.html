@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Very Basic 3D Viewer</title>
+  <!-- <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=2.16" type="text/css"> -->
+  <link rel="stylesheet" href="./lib/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="MyViewerDiv"></div>
+
+  <!-- The Viewer JS -->
+  <!-- <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.js?v=2.16"></script>
+  <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.js?v=2.16"></script> -->
+
+    <!-- The Viewer JS -->
+  <script src="./lib/three.js"></script>
+  <script src="./lib/viewer3D.js"></script>
+  <script src="./lib/extensions/WebVR/WebVR.js"></script>
+  
+
+  <!-- Developer JS -->
+  <script>
+
+      var config3d = {
+          extensions: ['Autodesk.Viewing.WebVR']
+      };
+      var myViewerDiv = document.getElementById('MyViewerDiv');
+      var viewer = new Autodesk.Viewing.Private.GuiViewer3D(myViewerDiv);
+      var options = {
+          'env' : 'Local',
+          // 'document' : './house/a1af576d-c210-6497-3611-e358e01f8255_f2d/primaryGraphics.f2d'
+          'document' : './copter/0.svf'
+      };
+      Autodesk.Viewing.Initializer(options, function() {
+        viewer.initialize();
+        viewer.loadModel(options.document, options);
+
+        viewer.loadExtension('Autodesk.Viewing.WebVR', Autodesk.Viewing.createViewerConfig());
+      });
+  </script>
+</body>
+
+</html>
