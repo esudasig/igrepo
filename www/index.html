@@ -55,6 +55,7 @@
     if (event.dbIdArray.length === 1) {
         viewer.getProperties(event.dbIdArray[0], function(data) {
             console.log(data.name)
+			alert("Id: " + event.dbIdArray[0] + ", name: " +  data.name);
             if (data.name.startsWith("Solid")) {
                 var instanceTree = viewer.model.getData().instanceTree;
                 var parentId = instanceTree.getNodeParentId(event.dbIdArray[0])
