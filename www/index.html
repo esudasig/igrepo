@@ -46,7 +46,7 @@
         viewer.loadModel(options.document, options);
 
         viewer.loadExtension('Autodesk.Viewing.WebVR', Autodesk.Viewing.createViewerConfig());
-		viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged)
+		viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged);
       });
 	  
 	  function onSelectionChanged(event) {
