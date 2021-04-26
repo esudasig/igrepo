@@ -46,8 +46,24 @@
         viewer.loadModel(options.document, options);
 
         viewer.loadExtension('Autodesk.Viewing.WebVR', Autodesk.Viewing.createViewerConfig());
+		viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged)
       });
 	  
+	  function onSelectionChanged(event) {
+    // Let's only control selection in case of
+    // single user selection
+    if (event.dbIdArray.length === 1) {
+        oViewer.getProperties(event.dbIdArray[0], function(data) {
+            console.log(data.name)
+            if (data.name.startsWith("Solid")) {
+                var instanceTree = oViewer.model.getData().instanceTree;
+                var parentId = instanceTree.getNodeParentId(event.dbIdArray[0])
+                oViewer.select([parentId]);
+            }
+        })
+    }
+}
+
 	  function getUrlParameter(name) {
             name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
             var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
