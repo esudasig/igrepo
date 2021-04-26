@@ -56,9 +56,9 @@
         viewer.getProperties(event.dbIdArray[0], function(data) {
             console.log(data.name)
             if (data.name.startsWith("Solid")) {
-                var instanceTree = oViewer.model.getData().instanceTree;
+                var instanceTree = viewer.model.getData().instanceTree;
                 var parentId = instanceTree.getNodeParentId(event.dbIdArray[0])
-                oViewer.select([parentId]);
+                viewer.select([parentId]);
             }
         })
     }
