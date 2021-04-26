@@ -53,7 +53,7 @@
     // Let's only control selection in case of
     // single user selection
     if (event.dbIdArray.length === 1) {
-        oViewer.getProperties(event.dbIdArray[0], function(data) {
+        viewer.getProperties(event.dbIdArray[0], function(data) {
             console.log(data.name)
             if (data.name.startsWith("Solid")) {
                 var instanceTree = oViewer.model.getData().instanceTree;
